@@ -6,3 +6,8 @@ function checkform() {
 	alert("You must check the form above");
     }
 }
+
+function display_cards(int probability, int num_cards) {
+
+
+}
