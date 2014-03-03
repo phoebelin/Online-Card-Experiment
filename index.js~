@@ -1,0 +1,7 @@
+function checkform() {
+    if(document.getElementById("consent").value == True) {
+	alert("Submit successful");
+    } else {
+	alert("Submit unsuccessful");
+    }
+}

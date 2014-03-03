@@ -92,7 +92,7 @@ $perspective: 300;
 
 
 body {
-  background-color: #e6f2f7; // Old browsers
+  background-color: #FFFFFF; // Old browsers
   @include filter-gradient(#e6f2f7, #a0d8ef, horizontal); 
   @include background-image(radial-gradient(center, circle cover,  #e6f2f7 0%,#a0d8ef 100%));
 
