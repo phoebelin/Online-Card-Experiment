@@ -42,10 +42,10 @@ window.onload = function() {
 	}
 	for (i = 0; i < num_remaining_cards; i++) {
 	    /*if(isInArray(all[i], feature)) {
-		i--;
-	    } else {
-		master_array.push(all[i]);
-	    }*/
+	      i--;
+	      } else {
+	      master_array.push(all[i]);
+	      }*/
 	    master_array.push(all_but_hearts[i]);
 	}
 
@@ -75,7 +75,10 @@ window.onload = function() {
     /*returns true if element is in given array*/
     function isInArray(value, array) {
 	return (array.indexOf(value) > -1);
-	}
+    }
     
+    function process_data() {
+    }
+
     display_cards(probability, total_cards, feature);
 }

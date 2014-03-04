@@ -6,3 +6,20 @@
  margin-right: 0.5%;
  margin-top: 1%;
 }
+
+#amount-label {
+ margin-left: 1%;
+ padding-top: 10%;
+}
+
+#amount-box {
+ margin-left: 1%;
+ width: 15%;
+ height: 20px;
+ 
+}
+
+#next-button {
+ margin-left:1%;
+ margin-top: -5%;
+}
