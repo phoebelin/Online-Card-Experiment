@@ -17,22 +17,21 @@ var all_but_hearts = new Array();
 all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 /*Changeable variables*/
 
-var probability = 0.5;
-var total_cards = 20;
+var probability = 0.1;
+var total_cards = 23;
+var feature = hearts;
 
 window.onload = function() {
 
     function display_cards(probability, total_cards, feature) {
+
+	/*shuffling cards and setting up variables*/
 	shuffleArray(feature);
 	shuffleArray(all);
 	shuffleArray(all_but_hearts);
-	var num_feature_cards = probability * total_cards;
+	var num_feature_cards = Math.round(probability * total_cards);
 	var num_remaining_cards = total_cards - num_feature_cards;
-	console.log("number of feature: " + num_feature_cards);
-	console.log("number of remaining: " + num_remaining_cards);
-	//var card = document.getElementById("test");
-	//card.src = hearts[Math.floor(Math.random()*hearts.length)];
-
+	
 	/*populating master array*/
 	var master_array = [];
 	console.log(master_array);
@@ -41,8 +40,6 @@ window.onload = function() {
 	for (i = 0; i < num_feature_cards; i++) {
 	    master_array.push(feature[i]);
 	}
-	console.log(feature[0]);
-	console.log(master_array);
 	for (i = 0; i < num_remaining_cards; i++) {
 	    /*if(isInArray(all[i], feature)) {
 		i--;
@@ -51,8 +48,8 @@ window.onload = function() {
 	    }*/
 	    master_array.push(all_but_hearts[i]);
 	}
-	console.log(master_array);
-	shuffleArray(master_array);
+
+	shuffleArray(master_array); //the master array is the deck thatcontains cards the participant will see.
 	str = "";
 	str += "<table>";
 	for (i = 0; i < total_cards; i++) {
@@ -80,5 +77,5 @@ window.onload = function() {
 	return (array.indexOf(value) > -1);
 	}
     
-    display_cards(probability, total_cards, hearts);
+    display_cards(probability, total_cards, feature);
 }
