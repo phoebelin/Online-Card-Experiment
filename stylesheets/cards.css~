@@ -1,0 +1,5 @@
+#card-grid {
+ width: 70%;
+ cellspacing:1;
+ cellpadding:5;
+}
