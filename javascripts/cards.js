@@ -17,8 +17,8 @@ var all_but_hearts = new Array();
 all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 /*Changeable variables*/
 
-var probability = 0.1;
-var total_cards = 23;
+var probability = 0.8;
+var total_cards = 20;
 var feature = hearts;
 
 window.onload = function() {
@@ -31,6 +31,11 @@ window.onload = function() {
 	shuffleArray(all_but_hearts);
 	var num_feature_cards = Math.round(probability * total_cards);
 	var num_remaining_cards = total_cards - num_feature_cards;
+	
+	if(num_feature_cards > 13) {
+	    num_feature_cards = 13;
+	    num_remaining_cards = total_cards - 13;
+	}
 	
 	/*populating master array*/
 	var master_array = [];
