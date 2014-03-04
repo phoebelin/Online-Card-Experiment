@@ -78,10 +78,9 @@ window.onload = function() {
     console.log(data);
     function process_data() {
 	var amount = document.getElementById("amount-box").value;
-	var datacell = [];
-	datacell["p"] = probability;
-	datacell["amount"] = amount;;
+	var datacell = {"p":probability, "amount":amount};
 	data.push(datacell);
+	return 1;
 	
     }
     console.log(data);
