@@ -20,6 +20,10 @@ all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 var probability = 0.8;
 var total_cards = 20;
 var feature = hearts;
+var feature_payoff = 0.10;
+var other_payoff = 0.01;
+var feature_names = ["hearts", "spades", "clubs", "diams"];
+var feature_tested = "hearts";
 
 window.onload = function() {
 
@@ -78,6 +82,12 @@ window.onload = function() {
     function isInArray(value, array) {
 	return (array.indexOf(value) > -1);
     }
+
+    function printHeader(feature_payoff, other_payoff) {
+	var header = document.getElementById("header");
+	console.log(header);
+	header.innerHTML = "&"+feature_tested+"; = &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; &diams; &clubs; = &#36;" + parseFloat(other_payoff).toFixed(2);
+    }
     
     var data = [];
     console.log(data);
@@ -89,5 +99,6 @@ window.onload = function() {
 	
     }
     console.log(data);
+    printHeader(feature_payoff, other_payoff);
     display_cards(probability, total_cards, feature);
 }

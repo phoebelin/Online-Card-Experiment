@@ -1,25 +1,40 @@
 #card-grid {
- width: 100%;
+    width: 100%;
 }
 
 .cards {
- margin-right: 0.5%;
- margin-top: 1%;
+    margin-right: 0.5%;
+    margin-top: 1%;
 }
 
 #amount-label {
- margin-left: 1%;
- padding-top: 10%;
+    margin-left: 1%;
+    padding-top: 10%;
+    font-size: 120%;
 }
 
 #amount-box {
- margin-left: 1%;
- width: 15%;
- height: 20px;
- 
+    margin-left: 1%;
+    margin-top: 1%;
+    width: 15%;
+    height: 20px;
+    
 }
 
 #next-button {
- margin-left:1%;
- margin-top: -5%;
+    margin-left:1%;
+    margin-top: -5%;
+}
+
+#header {
+    font-size: 280%;
+}
+
+#dollar-sign {
+    width: 10px;
+    margin-left:1%;
+    margin-right:0;
+    margin-top: 1%;
+    float:left;
+    font-size: 150%;
 }

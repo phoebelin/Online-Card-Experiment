@@ -53,14 +53,15 @@
 	<hr />
       </div>
       <div class="sixteen columns" id="cards">
-	<h3>Winning feature: Hearts</h3>
+	<h3 id="header"></h3>
 	<div id="card-grid"></div>
 	
       </div>
       
       <div>
 	<form action="" onsubmit="return process_data()">
-	  <label for="amount" id="amount-label">Fair amount of money:</label>
+	  <label for="amount" id="amount-label">Imagine you own a ticket for this lottery. For what price would you be willing to sell it?</label>
+	  <div id="dollar-sign">&#36;</div>
 	  <input type="number" min="0" id="amount-box" />
 	  <button type="submit" id="next-button">Next</button>
 	</form>
