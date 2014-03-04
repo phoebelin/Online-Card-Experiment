@@ -34,9 +34,6 @@ window.onload = function() {
 	
 	/*populating master array*/
 	var master_array = [];
-	console.log(master_array);
-	console.log(feature[0]);
-	console.log(master_array);
 	for (i = 0; i < num_feature_cards; i++) {
 	    master_array.push(feature[i]);
 	}
@@ -77,8 +74,16 @@ window.onload = function() {
 	return (array.indexOf(value) > -1);
     }
     
+    var data = [];
+    console.log(data);
     function process_data() {
+	var amount = document.getElementById("amount-box").value;
+	var datacell = [];
+	datacell["p"] = probability;
+	datacell["amount"] = amount;;
+	data.push(datacell);
+	
     }
-
+    console.log(data);
     display_cards(probability, total_cards, feature);
 }
