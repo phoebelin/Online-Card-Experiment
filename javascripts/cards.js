@@ -8,7 +8,7 @@ var clubs = new Array("images/1.png", "images/5.png", "images/9.png", "images/13
 
 var diamonds = new Array("images/4.png", "images/8.png", "images/12.png", "images/16.png", "images/20.png", "images/24.png", "images/28.png", "images/32.png", "images/36.png", "images/40.png", "images/44.png", "images/48.png", "images/52.png");
 
-var faces = new Array("images/5.png", "images/6.png", "images/7.png", "images/8.png", "images/9.png", "images/10.png", "images/11.png", "images/12.png", "images/13.png", "images/14.png", "images/15.png", "images/16.png");
+var faces = new Array("images/5.png", "images/6.png", "images/7.png", "imagesg/8.png", "images/9.png", "images/10.png", "images/11.png", "images/12.png", "images/13.png", "images/14.png", "images/15.png", "images/16.png");
 
 var all = new Array();
 all = all.concat(hearts, spades, clubs, diamonds);
@@ -17,10 +17,10 @@ var all_but_hearts = new Array();
 all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 /*Changeable variables*/
 
-var probability = 0.8;
-var total_cards = 20;
+var probability = 0.1;
+var total_cards = 10;
 var feature = hearts;
-var feature_payoff = 0.10;
+var feature_payoff = 1000;
 var other_payoff = 0.01;
 var feature_names = ["hearts", "spades", "clubs", "diams"];
 var feature_tested = "hearts";
