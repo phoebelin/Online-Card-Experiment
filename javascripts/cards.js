@@ -17,11 +17,11 @@ var all_but_hearts = new Array();
 all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 /*Changeable variables*/
 
-var probability = 0.1;
+var probability = 0.7;
 var total_cards = 10;
 var feature = hearts;
 var feature_payoff = 1000;
-var other_payoff = 0.01;
+var other_payoff = 500;
 var feature_names = ["hearts", "spades", "clubs", "diams"];
 var feature_tested = "hearts";
 
