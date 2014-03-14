@@ -28,6 +28,12 @@
 
 #header {
     font-size: 280%;
+    margin-right:50%;
+    float:right;
+}
+
+#heart {
+    font-size:280%;
 }
 
 #dollar-sign {
