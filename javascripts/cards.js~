@@ -87,7 +87,7 @@ window.onload = function() {
 
     function printHeader(feature_payoff, other_payoff) {
 	var header = document.getElementById("header");
-	console.log(header);
+	//console.log(header);
 	var heart = document.getElementById("heart");
 	heart.innerHTML = "&" + feature_tested+ ";";
 	heart.style.color = "#ff0000";
