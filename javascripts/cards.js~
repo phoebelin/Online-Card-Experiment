@@ -1,8 +1,8 @@
 /*Creating arrays with each specific type of card*/
 
-var hearts = new Array("images/3.png", "images/7.png", "images/11.png", "images/15.png", "images/19.png", "images/23.png", "images/27.png", "images/31.png", "images/35.png", "images/39.png", "images/43.png", "images/47.png", "images/51.png", "images/3.png");
+var hearts = new Array("images/3.png", "images/19.png", "images/23.png", "images/27.png", "images/31.png", "images/35.png", "images/39.png", "images/43.png", "images/47.png", "images/51.png", "images/3.png");
 
-var spades = new Array("images/2.png", "images/6.png", "images/10.png", "images/14.png", "images/18.png", "images/22.png", "images/26.png", "images/30.png", "images/34.png", "images/38.png", "images/42.png", "images/46.png", "images/50.png");
+var spades = new Array("images/2.png", "images/18.png", "images/22.png", "images/26.png", "images/30.png", "images/34.png", "images/38.png", "images/42.png", "images/46.png", "images/50.png");
 
 var clubs = new Array("images/1.png", "images/5.png", "images/9.png", "images/13.png", "images/17.png", "images/21.png", "images/25.png", "images/29.png", "images/33.png", "images/37.png", "images/41.png", "images/45.png", "images/49.png");
 
@@ -23,7 +23,7 @@ var total_cards = 9;
 var feature = hearts;
 var feature_payoff = 1000;
 var other_payoff = 500;
-var feature_names = ["hearts", "spades", "clubs", "diams"];
+var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
 
 window.onload = function() {
@@ -32,8 +32,9 @@ window.onload = function() {
 
 	/*shuffling cards and setting up variables*/
 	shuffleArray(feature);
-	shuffleArray(all);
-	shuffleArray(all_but_hearts);
+	//shuffleArray(all);
+	//shuffleArray(all_but_hearts);
+	shuffleArray(spades);
 	var num_feature_cards = num_winning_cards;
 	var num_remaining_cards = total_cards - num_feature_cards;
 	
@@ -53,7 +54,7 @@ window.onload = function() {
 	      } else {
 	      master_array.push(all[i]);
 	      }*/
-	    master_array.push(all_but_hearts[i]);
+	    master_array.push(spades[i]);
 	}
 
 	shuffleArray(master_array); //the master array is the deck thatcontains cards the participant will see.
@@ -87,7 +88,10 @@ window.onload = function() {
     function printHeader(feature_payoff, other_payoff) {
 	var header = document.getElementById("header");
 	console.log(header);
-	header.innerHTML = "&"+feature_tested+"; = &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; &diams; &clubs; = &#36;" + parseFloat(other_payoff).toFixed(2);
+	var heart = document.getElementById("heart");
+	heart.innerHTML = "&" + feature_tested+ ";";
+	heart.style.color = "#ff0000";
+	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
     }
     
     var data = [];
