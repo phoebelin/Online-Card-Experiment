@@ -94,16 +94,31 @@ window.onload = function() {
 	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
     }
     
-    var data = [];
+    /**    function loadScript(url, callback) {
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	script.type = 'text/javscript';
+	script.src = url;
+
+	script.onreadystatechange = callback;
+	script.onload = callback;
+
+	head.appendChild(script);
+	}**/
+
+    var data = Session.get("data");
     console.log(data);
     function process_data() {
 	var amount = document.getElementById("amount-box").value;
-	var datacell = {"p":probability, "amount":amount};
+	var datacell = {"p":num_winning_cards, "amount":amount};
 	data.push(datacell);
+	Session.set("data", data);
 	return 1;
 	
     }
     console.log(data);
+    process_data();
     printHeader(feature_payoff, other_payoff);
     display_cards(total_cards, feature);
+    //loadScript("session.js", process_data);
 }

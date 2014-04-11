@@ -25,6 +25,7 @@ var feature_payoff = 1000;
 var other_payoff = 500;
 var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
+var data = new Array();
 
 window.onload = function() {
 
@@ -106,18 +107,20 @@ window.onload = function() {
 	head.appendChild(script);
 	}**/
 
-    var data = Session.get("data");
+    //var data = Session.get("data");
     console.log(data);
     function process_data() {
 	var amount = document.getElementById("amount-box").value;
+	console.log("amount: " + amount);
 	var datacell = {"p":num_winning_cards, "amount":amount};
-	data.push(datacell);
-	Session.set("data", data);
+	console.log("datacell: " + datacell);
+	data.push(amount);
+	data.push("hi");
 	return 1;
 	
     }
-    console.log(data);
-    process_data();
+    //process_data();
+    console.log("data: " + data);
     printHeader(feature_payoff, other_payoff);
     display_cards(total_cards, feature);
     //loadScript("session.js", process_data);
