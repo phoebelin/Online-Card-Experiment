@@ -109,13 +109,13 @@ window.onload = function() {
 
     //var data = Session.get("data");
     console.log(data);
-    function process_data() {
+    function nextTrial() {
 	var amount = document.getElementById("amount-box").value;
 	console.log("amount: " + amount);
 	var datacell = {"p":num_winning_cards, "amount":amount};
 	console.log("datacell: " + datacell);
 	data.push(amount);
-	data.push("hi");
+	display_cards(total_cards, feature);
 	return 1;
 	
     }
