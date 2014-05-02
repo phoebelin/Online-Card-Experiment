@@ -97,11 +97,10 @@ function display_cards(total_cards, feature) {
 	    var card = document.createElement("img");
 	    card.src = master_array[i];
 	    card.setAttribute("id", "cards");
-	    if(document.getElementById("card-grid") != null) {
+	    if(document.getElementById("card-grid").innerHTML != null) {
 		console.log("node getting replaced");
-		var element = document.getElementById("card-grid");
-		element.parentNode.removeChild(element);
-		//document.getElementById("card-grid").replaceChild(card, document.getElementById("img"));
+		//document.getElementById("card-grid").innerHTML = 
+		document.getElementById("card-grid").replaceChild(card, document.getElementById(""));
 	    } else {
 		console.log("node getting appended");
 		document.getElementById("card-grid").appendChild(card);

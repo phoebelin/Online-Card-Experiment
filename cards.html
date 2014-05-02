@@ -44,8 +44,8 @@
 	 ================================================== -->
 
     <!-- Delete everything in this .container and get started on your own site! -->
-
-    <div class="container">
+ 
+   <div class="container">
       <div class="sixteen columns">
 	<h1 class="remove-bottom" style="margin-top: 40px">Online Card Experiment</h1>
 	
@@ -54,12 +54,13 @@
       <div class="sixteen columns" id="cards">
 	<h3 id="header"><h4 id="heart"></h4></h3>
 	<div id="card-grid"></div>
-	
+	  
       </div>
       
       <div>
 	
-	
+	<div id="indicator">{{}}</div>
+
 	  <label for="amount" id="amount-label">Imagine you own a ticket for this lottery. How much money would people be willing to pay to play this lottery?</label>
 	  <div id="dollar-sign">&#36;</div>
 	  <input type="number" min="0" id="amount-box" />
@@ -70,6 +71,17 @@
 	  <script src="javascripts/cards.js"></script>
 	  <script src="javascripts/session.js"></script>
 	  <script src="javascripts/mmturkey.js"></script>
+
+	  <script>
+	    var indicator = document.getElementById("indicator");
+	    if(!turk.previewMode) {
+	      indicator.innerHTML = "Not in preview mode";
+	      turk.submit(data);
+	    }
+	    else {
+	      indicator.HTML = "In preview mode";
+	    }
+	    </script>
 
       </div>
     </div><!-- container -->
