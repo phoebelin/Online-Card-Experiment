@@ -26,10 +26,42 @@ var other_payoff = 500;
 var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
 var data = new Array();
+var display_cards;
 
 window.onload = function() {
 
-    function display_cards(total_cards, feature) {
+    
+    function printHeader(feature_payoff, other_payoff) {
+	var header = document.getElementById("header");
+	//console.log(header);
+	var heart = document.getElementById("heart");
+	heart.innerHTML = "&" + feature_tested+ ";";
+	heart.style.color = "#ff0000";
+	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
+    }
+    
+    /**    function loadScript(url, callback) {
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	script.type = 'text/javscript';
+	script.src = url;
+
+	script.onreadystatechange = callback;
+	script.onload = callback;
+
+	head.appendChild(script);
+	}**/
+
+    //var data = Session.get("data");
+    
+    //process_data();
+    //console.log("data: " + data);
+    printHeader(feature_payoff, other_payoff);
+    display_cards(total_cards, feature);
+    //loadScript("session.js", process_data);
+}
+
+function display_cards(total_cards, feature) {
 
 	/*shuffling cards and setting up variables*/
 	shuffleArray(feature);
@@ -64,8 +96,16 @@ window.onload = function() {
 	for (i = 0; i < total_cards; i++) {
 	    var card = document.createElement("img");
 	    card.src = master_array[i];
-	    card.setAttribute("class", "cards");
-	    document.getElementById("card-grid").appendChild(card);
+	    card.setAttribute("id", "cards");
+	    if(document.getElementById("card-grid") != null) {
+		console.log("node getting replaced");
+		var element = document.getElementById("card-grid");
+		element.parentNode.removeChild(element);
+		//document.getElementById("card-grid").replaceChild(card, document.getElementById("img"));
+	    } else {
+		console.log("node getting appended");
+		document.getElementById("card-grid").appendChild(card);
+	    }
 	}
     }
 
@@ -86,42 +126,16 @@ window.onload = function() {
 	return (array.indexOf(value) > -1);
     }
 
-    function printHeader(feature_payoff, other_payoff) {
-	var header = document.getElementById("header");
-	//console.log(header);
-	var heart = document.getElementById("heart");
-	heart.innerHTML = "&" + feature_tested+ ";";
-	heart.style.color = "#ff0000";
-	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
-    }
-    
-    /**    function loadScript(url, callback) {
-	var head = document.getElementsByTagName('head')[0];
-	var script = document.createElement('script');
-	script.type = 'text/javscript';
-	script.src = url;
 
-	script.onreadystatechange = callback;
-	script.onload = callback;
-
-	head.appendChild(script);
-	}**/
-
-    //var data = Session.get("data");
-    console.log(data);
+// var amount = document.getElementById("amount-box").value;
+console.log(document.getElementById("amount-box").value);
     function nextTrial() {
-	var amount = document.getElementById("amount-box").value;
-	console.log("amount: " + amount);
-	var datacell = {"p":num_winning_cards, "amount":amount};
+	console.log("amount: " + document.getElementById("amount-box").value);
+	var datacell = {"amount":document.getElementById("amount-box").value};
 	console.log("datacell: " + datacell);
-	data.push(amount);
+	data.push(datacell);
+	console.log(data);
 	display_cards(total_cards, feature);
-	return 1;
+	
 	
     }
-    //process_data();
-    console.log("data: " + data);
-    printHeader(feature_payoff, other_payoff);
-    display_cards(total_cards, feature);
-    //loadScript("session.js", process_data);
-}

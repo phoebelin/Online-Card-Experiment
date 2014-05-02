@@ -22,11 +22,7 @@
     <link rel="stylesheet" href="stylesheets/skeleton.css">
     <link rel="stylesheet" href="stylesheets/layout.css">
     <link rel="stylesheet" href="stylesheets/cards.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/cards.js"></script>
-    <script src="javascripts/session.js"></script>
-    <script src="javascripts/mmturkey.js"></script>
-
+    
     <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -68,19 +64,13 @@
 	  <div id="dollar-sign">&#36;</div>
 	  <input type="number" min="0" id="amount-box" />
 	  <button type="submit" id="next-button" onclick="nextTrial()">Next</button>
+	  
 
-	  <script type="javascript">
-	    function nextTrial() {
-	      var amount = document.getElementById("amount-box").value;
-	      console.log("amount: " + amount);
-	      var datacell = {"p":num_winning_cards, "amount":amount};
-	      console.log("datacell: " + datacell);
-	      data.push(amount);
-	      display_cards(total_cards, feature);
-	      return 1;
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	  <script src="javascripts/cards.js"></script>
+	  <script src="javascripts/session.js"></script>
+	  <script src="javascripts/mmturkey.js"></script>
 
-    }
-	  </script>
       </div>
     </div><!-- container -->
 
