@@ -20,6 +20,7 @@ all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 //var probability = 0.7;
 var num_winning_cards = 4;
 var total_cards = 9;
+var win_probability = num_winning_cards/total_cards;
 var feature = hearts;
 var feature_payoff = 1000;
 var other_payoff = 500;
@@ -98,18 +99,18 @@ function display_cards(total_cards, feature) {
 	for (i = 0; i < total_cards; i++) {
 	    var card = document.createElement("img");
 	    card.src = master_array[i];
-	    card.setAttribute("id", "cards");
-	    if(document.getElementById("card-grid").innerHTML != null) {
+	    card.setAttribute("id", "cards"+i);
+	    if(document.getElementById("card-grid").title != "") {
 		console.log("node getting replaced");
 		//document.getElementById("card-grid").innerHTML = 
-		//document.getElementById("cards").replaceChild(card, document.getElementById("cards").child());
-		document.getElementById("card-grid").appendChild(card);
+		document.getElementById("card-grid").replaceChild(card, document.getElementById("cards"+i));
+		//document.getElementById("card-grid").appendChild(card);
 	    } else {
 		console.log("node getting appended");
 		document.getElementById("card-grid").appendChild(card);
 	    }
 	}
-	
+	document.getElementById("card-grid").title = "cardgroup";
 	document.getElementById("trial-num").innerHTML = "(1 / " + num_trials + ")";
     }
 
@@ -134,8 +135,9 @@ function display_cards(total_cards, feature) {
 // var amount = document.getElementById("amount-box").value;
 console.log(document.getElementById("amount-box").value);
     function nextTrial() {
+	//document.getElementById("amount-box").reset();
 	console.log("amount: " + document.getElementById("amount-box").value);
-	var datacell = {"amount":document.getElementById("amount-box").value};
+	var datacell = {probability: win_probability, amount: document.getElementById("amount-box").value};
 	console.log("datacell: " + datacell);
 	data.push(datacell);
 	console.log(data);
