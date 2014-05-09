@@ -2,6 +2,12 @@
     width: 40%;
 }
 
+#trial-num {
+	   margin-right:68%;
+	   margin-top: 1%;
+	   float:right;
+}
+
 .cards {
     margin-right: 0.5%;
     margin-top: 1%;
@@ -24,6 +30,7 @@
 #next-button {
     margin-left:1%;
     margin-top: -5%;
+    
 }
 
 #header {

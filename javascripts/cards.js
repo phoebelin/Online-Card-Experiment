@@ -27,6 +27,8 @@ var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
 var data = new Array();
 var display_cards;
+var num_trials = 10;
+var current_trial_num = 1;
 
 window.onload = function() {
 
@@ -100,12 +102,15 @@ function display_cards(total_cards, feature) {
 	    if(document.getElementById("card-grid").innerHTML != null) {
 		console.log("node getting replaced");
 		//document.getElementById("card-grid").innerHTML = 
-		document.getElementById("card-grid").replaceChild(card, document.getElementById(""));
+		//document.getElementById("cards").replaceChild(card, document.getElementById("cards").child());
+		document.getElementById("card-grid").appendChild(card);
 	    } else {
 		console.log("node getting appended");
 		document.getElementById("card-grid").appendChild(card);
 	    }
 	}
+	
+	document.getElementById("trial-num").innerHTML = "(1 / " + num_trials + ")";
     }
 
     /*returns an array that is in a randomized order
@@ -135,6 +140,20 @@ console.log(document.getElementById("amount-box").value);
 	data.push(datacell);
 	console.log(data);
 	display_cards(total_cards, feature);
+	current_trial_num++;
+	document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
 	
+	if(current_trial_num > num_trials-1) {
+	    submitTurk();
+	    console.log("data submitted");
+	    document.getElementById("next-button").disabled = true;
+	}
+	
+	console.log("current trial number: " + current_trial_num);
 	
     }
+
+
+function submitTurk() {
+    turk.submit(data);
+}
