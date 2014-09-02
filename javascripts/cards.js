@@ -136,15 +136,18 @@ function display_cards(total_cards, feature) {
 console.log(document.getElementById("amount-box").value);
     function nextTrial() {
 	//document.getElementById("amount-box").reset();
-	console.log("amount: " + document.getElementById("amount-box").value);
-	var datacell = {probability: win_probability, amount: document.getElementById("amount-box").value};
-	console.log("datacell: " + datacell);
-	data.push(datacell);
-	console.log(data);
-	display_cards(total_cards, feature);
-	current_trial_num++;
-	document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
-	
+	if (document.getElementById("amount-box").value == "") {
+	    window.alert("You must input a number");
+	} else {
+	    console.log("amount: " + document.getElementById("amount-box").value);
+	    var datacell = {probability: win_probability, amount: document.getElementById("amount-box").value};
+	    console.log("datacell: " + datacell);
+	    data.push(datacell);
+	    console.log(data);
+	    display_cards(total_cards, feature);
+	    current_trial_num++;
+	    document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
+	}
 	if(current_trial_num > num_trials-1) {
 	    submitTurk();
 	    console.log("data submitted");
