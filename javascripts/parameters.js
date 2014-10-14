@@ -18,9 +18,9 @@ all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 /*Changeable variables*/
 
 //var probability = 0.7;
-var num_winning_cards = 4;
+var num_winning_cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var total_cards = 9;
-var win_probability = num_winning_cards/total_cards;
+var win_probability;
 var feature = hearts;
 var feature_payoff = 1000;
 var other_payoff = 500;

@@ -31,6 +31,10 @@ window.onload = function() {
     //loadScript("session.js", process_data);
 }
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function display_cards(total_cards, feature) {
 
 	/*shuffling cards and setting up variables*/
@@ -38,7 +42,12 @@ function display_cards(total_cards, feature) {
 	//shuffleArray(all);
 	//shuffleArray(all_but_hearts);
 	shuffleArray(spades);
-	var num_feature_cards = num_winning_cards;
+	i = getRandomInt(1,8);
+	var num_feature_cards = num_winning_cards[i];
+	win_probability = num_feature_cards/total_cards;
+	console.log("win probability");
+	console.log(win_probability);
+	//var num_feature_cards = 5
 	var num_remaining_cards = total_cards - num_feature_cards;
 	
 	if(num_feature_cards > 13) {
@@ -110,6 +119,7 @@ console.log(document.getElementById("amount-box").value);
 	} else {
 	    console.log("amount: " + document.getElementById("amount-box").value);
 	    //var datacell = {probability: win_probability};
+	    console.log(win_probability);
 	    probabilities.push(win_probability);
 	    prices.push(document.getElementById("amount-box").value);
 	    payoffs.push(feature_payoff);
