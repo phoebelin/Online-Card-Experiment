@@ -20,16 +20,51 @@ all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
 //var probability = 0.7;
 var num_winning_cards = 4;
 var total_cards = 9;
+var win_probability = num_winning_cards/total_cards;
 var feature = hearts;
 var feature_payoff = 1000;
 var other_payoff = 500;
 var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
 var data = new Array();
+var display_cards;
+var num_trials = 10;
+var current_trial_num = 1;
 
 window.onload = function() {
 
-    function display_cards(total_cards, feature) {
+    
+    function printHeader(feature_payoff, other_payoff) {
+	var header = document.getElementById("header");
+	//console.log(header);
+	var heart = document.getElementById("heart");
+	heart.innerHTML = "&" + feature_tested+ ";";
+	heart.style.color = "#ff0000";
+	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
+    }
+    
+    /**    function loadScript(url, callback) {
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	script.type = 'text/javscript';
+	script.src = url;
+
+	script.onreadystatechange = callback;
+	script.onload = callback;
+
+	head.appendChild(script);
+	}**/
+
+    //var data = Session.get("data");
+    
+    //process_data();
+    //console.log("data: " + data);
+    printHeader(feature_payoff, other_payoff);
+    display_cards(total_cards, feature);
+    //loadScript("session.js", process_data);
+}
+
+function display_cards(total_cards, feature) {
 
 	/*shuffling cards and setting up variables*/
 	shuffleArray(feature);
@@ -64,9 +99,19 @@ window.onload = function() {
 	for (i = 0; i < total_cards; i++) {
 	    var card = document.createElement("img");
 	    card.src = master_array[i];
-	    card.setAttribute("class", "cards");
-	    document.getElementById("card-grid").appendChild(card);
+	    card.setAttribute("id", "cards"+i);
+	    if(document.getElementById("card-grid").title != "") {
+		console.log("node getting replaced");
+		//document.getElementById("card-grid").innerHTML = 
+		document.getElementById("card-grid").replaceChild(card, document.getElementById("cards"+i));
+		//document.getElementById("card-grid").appendChild(card);
+	    } else {
+		console.log("node getting appended");
+		document.getElementById("card-grid").appendChild(card);
+	    }
 	}
+	document.getElementById("card-grid").title = "cardgroup";
+	document.getElementById("trial-num").innerHTML = "(1 / " + num_trials + ")";
     }
 
     /*returns an array that is in a randomized order
@@ -86,42 +131,31 @@ window.onload = function() {
 	return (array.indexOf(value) > -1);
     }
 
-    function printHeader(feature_payoff, other_payoff) {
-	var header = document.getElementById("header");
-	//console.log(header);
-	var heart = document.getElementById("heart");
-	heart.innerHTML = "&" + feature_tested+ ";";
-	heart.style.color = "#ff0000";
-	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
-    }
-    
-    /**    function loadScript(url, callback) {
-	var head = document.getElementsByTagName('head')[0];
-	var script = document.createElement('script');
-	script.type = 'text/javscript';
-	script.src = url;
 
-	script.onreadystatechange = callback;
-	script.onload = callback;
-
-	head.appendChild(script);
-	}**/
-
-    //var data = Session.get("data");
-    console.log(data);
-    function process_data() {
-	var amount = document.getElementById("amount-box").value;
-	console.log("amount: " + amount);
-	var datacell = {"p":num_winning_cards, "amount":amount};
+// var amount = document.getElementById("amount-box").value;
+console.log(document.getElementById("amount-box").value);
+    function nextTrial() {
+	//document.getElementById("amount-box").reset();
+	console.log("amount: " + document.getElementById("amount-box").value);
+	var datacell = {probability: win_probability, amount: document.getElementById("amount-box").value};
 	console.log("datacell: " + datacell);
-	data.push(amount);
-	data.push("hi");
-	return 1;
+	data.push(datacell);
+	console.log(data);
+	display_cards(total_cards, feature);
+	current_trial_num++;
+	document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
+	
+	if(current_trial_num > num_trials-1) {
+	    submitTurk();
+	    console.log("data submitted");
+	    document.getElementById("next-button").disabled = true;
+	}
+	
+	console.log("current trial number: " + current_trial_num);
 	
     }
-    //process_data();
-    console.log("data: " + data);
-    printHeader(feature_payoff, other_payoff);
-    display_cards(total_cards, feature);
-    //loadScript("session.js", process_data);
+
+
+function submitTurk() {
+    turk.submit(data);
 }

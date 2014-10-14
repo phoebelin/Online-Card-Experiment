@@ -111,7 +111,7 @@ function display_cards(total_cards, feature) {
 	    }
 	}
 	document.getElementById("card-grid").title = "cardgroup";
-	document.getElementById("trial-num").innerHTML = "(1 / " + num_trials + ")";
+	document.getElementById("trial-num").innerHTML = "Gamble (1 / " + num_trials + ")";
     }
 
     /*returns an array that is in a randomized order
@@ -140,7 +140,7 @@ console.log(document.getElementById("amount-box").value);
 	    window.alert("You must input a number");
 	} else {
 	    console.log("amount: " + document.getElementById("amount-box").value);
-	    var datacell = {probability: win_probability, amount: document.getElementById("amount-box").value};
+	    var datacell = {probability: win_probability, price: document.getElementById("amount-box").value};
 	    console.log("datacell: " + datacell);
 	    data.push(datacell);
 	    console.log(data);
