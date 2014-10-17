@@ -1,13 +1,13 @@
 window.onload = function() {
 
     
-    function printHeader(feature_payoff, other_payoff) {
+    function printHeader(feature_payoff, other_payoff, payoff_num) {
 	var header = document.getElementById("header");
 	//console.log(header);
 	var heart = document.getElementById("heart");
 	heart.innerHTML = "&" + feature_tested+ ";";
 	heart.style.color = "#ff0000";
-	header.innerHTML = "= &#36;" + parseFloat(feature_payoff).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff).toFixed(2);
+	header.innerHTML = "= &#36;" + parseFloat(feature_payoff[payoff_num]).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff[payoff_num]).toFixed(2);
     }
     
     /**    function loadScript(url, callback) {
@@ -26,7 +26,7 @@ window.onload = function() {
     
     //process_data();
     //console.log("data: " + data);
-    printHeader(feature_payoff, other_payoff);
+    printHeader(feature_payoff, other_payoff, payoff_num);
     display_cards(total_cards, feature);
     //loadScript("session.js", process_data);
 }
@@ -107,9 +107,13 @@ function display_cards(total_cards, feature) {
 	return (array.indexOf(value) > -1);
     }
 
-var prices = [];
-var probabilities = [];
-var payoffs = [];
+var data = new Object;
+data['prices'] = [];
+x = data['prices'];
+data['probabilities'] = [];
+y = data['probabilities'];
+data['payoffs'] = [];
+z = data['payoffs'];
 // var amount = document.getElementById("amount-box").value;
 console.log(document.getElementById("amount-box").value);
     function nextTrial() {
@@ -120,20 +124,22 @@ console.log(document.getElementById("amount-box").value);
 	    console.log("amount: " + document.getElementById("amount-box").value);
 	    //var datacell = {probability: win_probability};
 	    console.log(win_probability);
-	    probabilities.push(win_probability);
-	    prices.push(document.getElementById("amount-box").value);
-	    payoffs.push(feature_payoff);
-	    
+	    y.push(win_probability);
+	    x.push(document.getElementById("amount-box").value);
+	    z.push(feature_payoff[payoff_num]);
+	    console.log("x" , x);
+	    data['prices'] = x;
+		data['probabilities'] = y;
+		data['payoffs'] = z;
 	    console.log(data);
 	    display_cards(total_cards, feature);
 	    current_trial_num++;
 	    document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
 	}
 	if(current_trial_num > num_trials-1) {
-		data.push(probabilities);
-		data.push(prices);
-		data.push(payoffs);
-	    submitTurk();
+		
+		console.log('data before turk', data);
+		submitTurk();
 	    console.log("data submitted");
 	    document.getElementById("next-button").disabled = true;
 	}
@@ -144,5 +150,5 @@ console.log(document.getElementById("amount-box").value);
 
 
 function submitTurk() {
-    turk.submit(data);
+    turk.submit(data, true);
 }
