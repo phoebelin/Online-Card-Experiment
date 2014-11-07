@@ -27,6 +27,7 @@ window.onload = function() {
     //process_data();
     //console.log("data: " + data);
     printHeader(feature_payoff, other_payoff, payoff_num);
+
     display_cards(total_cards, feature);
     //loadScript("session.js", process_data);
 }
