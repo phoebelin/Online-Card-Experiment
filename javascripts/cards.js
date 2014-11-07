@@ -28,7 +28,15 @@ window.onload = function() {
     //console.log("data: " + data);
     printHeader(feature_payoff, other_payoff, payoff_num);
 
-    display_cards(total_cards, feature);
+	for (var x = 0; x < num_iterations; x++) {
+		for (var i = 1; i <= 9; i++) {
+			iterate_array.push(i)
+		}
+	}
+	shuffleArray(iterate_array);
+    display_cards(total_cards, feature, iterate_array[q]);
+    q++;
+    console.log("q: " + q);
     //loadScript("session.js", process_data);
 }
 
@@ -36,15 +44,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function display_cards(total_cards, feature) {
+
+
+
+function display_cards(total_cards, feature, i) {
+
+	
 
 	/*shuffling cards and setting up variables*/
 	shuffleArray(feature);
 	//shuffleArray(all);
 	//shuffleArray(all_but_hearts);
 	shuffleArray(spades);
-	i = getRandomInt(1,8);
-	var num_feature_cards = num_winning_cards[i];
+	//i = getRandomInt(1,8);
+	var num_feature_cards = i;
+	console.log(num_feature_cards);
 	win_probability = num_feature_cards/total_cards;
 	console.log("win probability");
 	console.log(win_probability);
@@ -133,7 +147,10 @@ console.log(document.getElementById("amount-box").value);
 		data['probabilities'] = y;
 		data['payoffs'] = z;
 	    console.log(data);
-	    display_cards(total_cards, feature);
+	    console.log(iterate_array);
+
+	    display_cards(total_cards, feature, iterate_array[q]);
+	    q++;
 	    current_trial_num++;
 	    document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
 	}

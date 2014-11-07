@@ -15,20 +15,33 @@ all = all.concat(hearts, spades, clubs, diamonds);
 
 var all_but_hearts = new Array();
 all_but_hearts = all_but_hearts.concat(spades, clubs, diamonds);
-/*Changeable variables*/
 
-//var probability = 0.7;
+/* Changeable variables start */
+
+//number of winning cards
 var num_winning_cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+//total number of cards
 var total_cards = 9;
-var win_probability;
-var feature = hearts;
+//number of repetitions
+var num_iterations = 2;
+
+//type of payoff
 var feature_payoff = [10, 100, 1000];
 var other_payoff = [5, 50, 500];
+
+//winning feature
+var feature = hearts;
+//index that determines what kind of payoff in payoff arrays
 var payoff_num = 2;
-var num_iterations = 2;
+
+/* Changeable variables end */
+
+var win_probability;
 var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
 var data = new Array();
 var display_cards;
+var iterate_array = []
+var q = 0;
 var num_trials = num_iterations * num_winning_cards.length;
 var current_trial_num = 1;
