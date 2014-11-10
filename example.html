@@ -20,9 +20,9 @@
   ================================================== -->
 	<link rel="stylesheet" href="stylesheets/base.css">
 	<link rel="stylesheet" href="stylesheets/skeleton.css">
-	<link rel="stylesheet" href="stylesheets/layout.css">
-	<link rel="stylesheet" href="stylesheets/index.css">
+	<link rel="stylesheet" href="stylesheets/example.css">
 	<script src="javascripts/index.js"></script>
+	<script src="javascripts/example.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,22 +47,25 @@
 
 	<div class="container">
 		<div class="sixteen columns">
-			<h1 class="remove-bottom" style="margin-top: 40px">Experiment: Determining Fair Prices</h1>
+			<h1 class="remove-bottom" style="margin-top: 40px">How to play</h1>
 			
 			<hr />
 		</div>
-		
-		<div class="sixteen columns" style="margin-top:20px">
-		  <h3>Participant Consent Form</h3> 
-		  <h5>Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists from the University of California at Berkeley. If you have questions about this research, please contact <a href="mailto:falk.lieder@berkeley.edu?Subject=Online%20Card%20Experiment%20Inquiry" target="_top">Falk Lieder</a>. You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</h5>
-		  <form action="" onsubmit="return checkform(this)">
-		    <label for="consent">
-		      <input type="checkbox" id="consent" value="consent" />
-		      <span>I consent to participate.</span>
-		    </label>
-		    <button type="submit" id="next-button">Next</button>
-		  </form>
+		<div class="sixteen columns" id="text">
+			
+			<h5>
+				You will be shown a series of gambles. For each gamble you will be shown a set of playing cards and the payoffs associated with the two suits: hearts and spades. The cards will be shuffled and laid down with their backs facing up. You will then pick a card and the card's suit determines the payoff. <br><br>Now imagine you own a ticket for this gamble. <u>Your task is to estimate how much this ticket is worth.</u>
+				<br><br>
+				Example:
+				<br>
+			<h5>
 		</div>
+
+		<div id="card-image">
+			<img src="./images/example.png"/>
+			<img src="./images/example2.png"/>
+		</div>
+		
 	</div><!-- container -->
 
 

@@ -1,0 +1,13 @@
+#card-image {
+	z-index: 1;
+}
+
+#card-image img {
+	width:50%;
+	height:50%;
+}
+
+#text {
+	position: relative;	
+	z-index: 2;
+}

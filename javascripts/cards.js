@@ -141,7 +141,7 @@ console.log(document.getElementById("amount-box").value);
 	    console.log(win_probability);
 	    y.push(win_probability);
 	    x.push(document.getElementById("amount-box").value);
-	    z.push(feature_payoff[payoff_num]);
+	    z.push([feature_payoff[payoff_num], other_payoff[payoff_num]]);
 	    console.log("x" , x);
 	    data['prices'] = x;
 		data['probabilities'] = y;
