@@ -3,6 +3,6 @@ function checkform() {
 	window.location.assign("./example.html");
 	return false;
     } else {
-	alert("You must check the consent form");
+	alert("If you wish to participate, please check the box next to 'I consent to participate.'");
     }
 }

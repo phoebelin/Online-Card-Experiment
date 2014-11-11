@@ -111,3 +111,10 @@ body {
 #next-button {
   margin-top: 1%;
 }
+
+.block-text {
+  width: 600px;
+  text-align: justify;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
