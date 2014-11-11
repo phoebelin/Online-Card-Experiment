@@ -1,8 +1,11 @@
 #card-image {
+	border-style: solid;
+	border-color: black;
 	z-index: 1;
 }
 
 #card-image img {
+
 	width:50%;
 	height:50%;
 }
@@ -10,4 +13,8 @@
 #text {
 	position: relative;	
 	z-index: 2;
+}
+
+#next-button {
+	position: center;
 }

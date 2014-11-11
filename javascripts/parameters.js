@@ -26,13 +26,13 @@ var total_cards = 9;
 var num_iterations = 2;
 
 //type of payoff
-var feature_payoff = [10, 100, 1000];
-var other_payoff = [5, 50, 500];
+var feature_payoff = [1, 1];
+var other_payoff = [2, 1000];
 
 //winning feature
 var feature = hearts;
 //index that determines what kind of payoff in payoff arrays
-var payoff_num = 2;
+var payoff_num;
 
 /* Changeable variables end */
 
@@ -41,7 +41,10 @@ var feature_names = ["hearts", "spades"];
 var feature_tested = "hearts";
 var data = new Array();
 var display_cards;
-var iterate_array = []
+var iterate_array = [];
+var new_iterate_array = [];
 var q = 0;
-var num_trials = num_iterations * num_winning_cards.length;
+var payoff_array = [];
+var j = 0;
+var num_trials = num_iterations * num_winning_cards.length * feature_payoff.length;
 var current_trial_num = 1;

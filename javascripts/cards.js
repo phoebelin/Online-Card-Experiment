@@ -1,43 +1,37 @@
 window.onload = function() {
 
     
-    function printHeader(feature_payoff, other_payoff, payoff_num) {
+    
+    
+    
+    for (var x = 0; x < num_trials; x++) {
+    	payoff_array.push(getRandomInt(0,1))
+    }
+    shuffleArray(payoff_array);
+
+    printHeader(feature_payoff, other_payoff, payoff_array[j]);
+    j++;
+
+	for (var x = 0; x < num_iterations; x++) {
+		for (var i = 0; i <= 9; i++) {
+			iterate_array.push(i)
+		}
+	}
+	var iterate_array_copy = iterate_array.slice(0);
+	new_iterate_array = iterate_array.concat(iterate_array_copy);
+	shuffleArray(new_iterate_array);
+    display_cards(total_cards, feature, new_iterate_array[q]);
+    q++;
+    //loadScript("session.js", process_data);
+}
+
+function printHeader(feature_payoff, other_payoff, payoff_num) {
 	var header = document.getElementById("header");
 	//console.log(header);
 	var heart = document.getElementById("heart");
 	heart.innerHTML = "&" + feature_tested+ ";";
 	heart.style.color = "#ff0000";
 	header.innerHTML = "= &#36;" + parseFloat(feature_payoff[payoff_num]).toFixed(2)+ ", &spades; = &#36;" + parseFloat(other_payoff[payoff_num]).toFixed(2);
-    }
-    
-    /**    function loadScript(url, callback) {
-	var head = document.getElementsByTagName('head')[0];
-	var script = document.createElement('script');
-	script.type = 'text/javscript';
-	script.src = url;
-
-	script.onreadystatechange = callback;
-	script.onload = callback;
-
-	head.appendChild(script);
-	}**/
-
-    //var data = Session.get("data");
-    
-    //process_data();
-    //console.log("data: " + data);
-    printHeader(feature_payoff, other_payoff, payoff_num);
-
-	for (var x = 0; x < num_iterations; x++) {
-		for (var i = 1; i <= 9; i++) {
-			iterate_array.push(i)
-		}
-	}
-	shuffleArray(iterate_array);
-    display_cards(total_cards, feature, iterate_array[q]);
-    q++;
-    console.log("q: " + q);
-    //loadScript("session.js", process_data);
 }
 
 function getRandomInt(min, max) {
@@ -57,7 +51,7 @@ function display_cards(total_cards, feature, i) {
 	//shuffleArray(all_but_hearts);
 	shuffleArray(spades);
 	//i = getRandomInt(1,8);
-	var num_feature_cards = i;
+	var num_feature_cards = new_iterate_array[q];
 	console.log(num_feature_cards);
 	win_probability = num_feature_cards/total_cards;
 	console.log("win probability");
@@ -141,16 +135,17 @@ console.log(document.getElementById("amount-box").value);
 	    console.log(win_probability);
 	    y.push(win_probability);
 	    x.push(document.getElementById("amount-box").value);
-	    z.push([feature_payoff[payoff_num], other_payoff[payoff_num]]);
+	    z.push([feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]]]);
 	    console.log("x" , x);
 	    data['prices'] = x;
 		data['probabilities'] = y;
 		data['payoffs'] = z;
 	    console.log(data);
-	    console.log(iterate_array);
 
-	    display_cards(total_cards, feature, iterate_array[q]);
+	    display_cards(total_cards, feature, new_iterate_array[q]);
 	    q++;
+	    printHeader(feature_payoff, other_payoff, payoff_array[j]);
+	    j++;
 	    current_trial_num++;
 	    document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
 	}
