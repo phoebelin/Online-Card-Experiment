@@ -157,6 +157,7 @@ z = data['payoffs'];
 	    document.getElementById("next-button").disabled = true;
 	}
 	
+	document.getElementById("amount-box").value = "";
 	//console.log("current trial number: " + current_trial_num);
 	
     }
