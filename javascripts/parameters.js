@@ -23,7 +23,7 @@ var num_winning_cards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 //total number of cards
 var total_cards = 9;
 //number of repetitions
-var num_iterations = 2;
+var num_iterations = 1;
 
 //type of payoff
 var feature_payoff = [1, 1];

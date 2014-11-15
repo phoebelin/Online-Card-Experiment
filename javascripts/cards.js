@@ -96,7 +96,7 @@ function display_cards(total_cards, feature, i) {
 	    }
 	}
 	document.getElementById("card-grid").title = "cardgroup";
-	document.getElementById("trial-num").innerHTML = "Gamble (1 / " + num_trials + ")";
+	document.getElementById("trial-num").innerHTML = "Gamble 1 / " + num_trials + "";
     }
 
     /*returns an array that is in a randomized order
@@ -147,7 +147,7 @@ z = data['payoffs'];
 	    printHeader(feature_payoff, other_payoff, payoff_array[j]);
 	    j++;
 	    current_trial_num++;
-	    document.getElementById("trial-num").innerHTML = "(" + current_trial_num + " / " + num_trials + ")";
+	    document.getElementById("trial-num").innerHTML = "" + current_trial_num + " / " + num_trials + "";
 	}
 	if(current_trial_num > num_trials-1) {
 		
