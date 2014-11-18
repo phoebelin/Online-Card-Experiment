@@ -164,5 +164,6 @@ z = data['payoffs'];
 
 
 function submitTurk() {
-    turk.submit(data);
+    alert('Submitting to Turk!')
+    setTimeout(function() { turk.submit(data) }, 1500);
 }
