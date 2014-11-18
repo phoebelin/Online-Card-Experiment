@@ -164,5 +164,5 @@ z = data['payoffs'];
 
 
 function submitTurk() {
-    turk.submit(data, true);
+    turk.submit(data);
 }
