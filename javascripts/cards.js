@@ -137,9 +137,9 @@ z = data['payoffs'];
 	    x.push(document.getElementById("amount-box").value);
 	    z.push([feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]]]);
 	    //console.log("x" , x);
-	    data['prices'] = x;
-		data['probabilities'] = y;
-		data['payoffs'] = z;
+	    //data['prices'] = x;
+		//data['probabilities'] = y;
+		//data['payoffs'] = z;
 	    //console.log(data);
 
 	    display_cards(total_cards, feature, new_iterate_array[q]);
@@ -151,6 +151,11 @@ z = data['payoffs'];
 	}
 	if(current_trial_num > num_trials-1) {
 		
+        data={
+            prices: x,
+            probabilities: y,
+            payoffs: z
+        }
 		//console.log('data before turk', data);
 		submitTurk();
 	    //console.log("data submitted");
