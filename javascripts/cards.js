@@ -133,9 +133,10 @@ z = data['payoffs'];
 	    //console.log("amount: " + document.getElementById("amount-box").value);
 	    //var datacell = {probability: win_probability};
 	    //console.log(win_probability);
-	    y.push(win_probability);
+	    y.push(9*win_probability);
 	    x.push(document.getElementById("amount-box").value);
-	    z.push([feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]]]);
+	    //z.push([feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]]]);
+        z.push((Math.max(feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]])==1000)+0);
 	    //console.log("x" , x);
 	    //data['prices'] = x;
 		//data['probabilities'] = y;
@@ -153,12 +154,18 @@ z = data['payoffs'];
 		
         data={
             prices: x,
-            probabilities: y,
+            nr_winning_cards: y,
             payoffs: z
         }
 		//console.log('data before turk', data);
-		submitTurk();
+		//submitTurk();
 	    //console.log("data submitted");
+        check_sum=sumArray(data.payoffs)+sumArray(data.prices)+sumArray(data.nr_winning_cards);
+        secret_code=(data.payoffs.toString()).replace(/\,/g,'')+";"+data.prices.toString()+";"+data.nr_winning_cards.toString()+";"+check_sum;
+        $("#Trial").hide()
+        $("#Finished").show()
+        $("#SecretCode").html(secret_code);
+        
 	    document.getElementById("next-button").disabled = true;
 	}
 	
@@ -171,4 +178,12 @@ z = data['payoffs'];
 function submitTurk() {
     alert('Submitting to Turk!')
     setTimeout(function() { turk.submit(data) }, 1500);
+}
+
+function sumArray(numeric_array){
+    sum=0;
+    for (c=0;c<numeric_array.length;c++){
+        sum+=parseFloat(numeric_array[c]);
+    }
+    return sum;
 }
