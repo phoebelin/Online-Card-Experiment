@@ -1,8 +1,4 @@
 window.onload = function() {
-
-    
-    
-    
     
     for (var x = 0; x < num_trials; x++) {
     	payoff_array.push(getRandomInt(0,1))
@@ -38,25 +34,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
-
-
 function display_cards(total_cards, feature, i) {
-
-	
 
 	/*shuffling cards and setting up variables*/
 	shuffleArray(feature);
-	//shuffleArray(all);
-	//shuffleArray(all_but_hearts);
 	shuffleArray(spades);
 	//i = getRandomInt(1,8);
 	var num_feature_cards = new_iterate_array[q];
 	//console.log(num_feature_cards);
 	win_probability = num_feature_cards/total_cards;
-	//console.log("win probability");
-	//console.log(win_probability);
-	//var num_feature_cards = 5
 	var num_remaining_cards = total_cards - num_feature_cards;
 	
 	if(num_feature_cards > 13) {
@@ -70,11 +56,7 @@ function display_cards(total_cards, feature, i) {
 	    master_array.push(feature[i]);
 	}
 	for (i = 0; i < num_remaining_cards; i++) {
-	    /*if(isInArray(all[i], feature)) {
-	      i--;
-	      } else {
-	      master_array.push(all[i]);
-	      }*/
+
 	    master_array.push(spades[i]);
 	}
 
@@ -86,18 +68,17 @@ function display_cards(total_cards, feature, i) {
 	    card.src = master_array[i];
 	    card.setAttribute("id", "cards"+i);
 	    if(document.getElementById("card-grid").title != "") {
-		//console.log("node getting replaced");
-		//document.getElementById("card-grid").innerHTML = 
 		document.getElementById("card-grid").replaceChild(card, document.getElementById("cards"+i));
-		//document.getElementById("card-grid").appendChild(card);
 	    } else {
-		//console.log("node getting appended");
 		document.getElementById("card-grid").appendChild(card);
 	    }
 	}
 	document.getElementById("card-grid").title = "cardgroup";
 	document.getElementById("trial-num").innerHTML = "Gamble 1 / " + num_trials + "";
-    }
+    
+    //Start the timer
+    start_time=new Date().getTime();
+}
 
     /*returns an array that is in a randomized order
       using Fisher-Yates shuffle algorithm*/
@@ -118,6 +99,7 @@ function display_cards(total_cards, feature, i) {
 
 var data = new Object;
 data['prices'] = [];
+w = new Array();
 x = data['prices'];
 data['probabilities'] = [];
 y = data['probabilities'];
@@ -125,7 +107,10 @@ data['payoffs'] = [];
 z = data['payoffs'];
 // var amount = document.getElementById("amount-box").value;
 //console.log(document.getElementById("amount-box").value);
-    function nextTrial() {
+
+
+function nextTrial() {
+        
 	//document.getElementById("amount-box").reset();
 	if (document.getElementById("amount-box").value == "") {
 	    window.alert("You must input a number");
@@ -133,7 +118,9 @@ z = data['payoffs'];
 	    //console.log("amount: " + document.getElementById("amount-box").value);
 	    //var datacell = {probability: win_probability};
 	    //console.log(win_probability);
-	    y.push(9*win_probability);
+        RT=new Date().getTime()-start_time;
+        w.push(Math.round(RT/1000));
+        y.push(9*win_probability);
 	    x.push(document.getElementById("amount-box").value);
 	    //z.push([feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]]]);
         z.push((Math.max(feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]])==1000)+0);
@@ -142,7 +129,7 @@ z = data['payoffs'];
 		//data['probabilities'] = y;
 		//data['payoffs'] = z;
 	    //console.log(data);
-
+        
 	    display_cards(total_cards, feature, new_iterate_array[q]);
 	    q++;
 	    printHeader(feature_payoff, other_payoff, payoff_array[j]);
@@ -153,15 +140,17 @@ z = data['payoffs'];
 	if(current_trial_num > num_trials-1) {
 		
         data={
+            RT: w,
             prices: x,
             nr_winning_cards: y,
-            payoffs: z
+            payoffs: z            
         }
 		//console.log('data before turk', data);
 		//submitTurk();
 	    //console.log("data submitted");
-        check_sum=sumArray(data.payoffs)+sumArray(data.prices)+sumArray(data.nr_winning_cards);
-        secret_code=(data.payoffs.toString()).replace(/\,/g,'')+";"+data.prices.toString()+";"+data.nr_winning_cards.toString()+";"+check_sum;
+        RT_string=data.RT.toString();
+        check_sum=sumArray(data.payoffs)+sumArray(data.prices)+sumArray(data.nr_winning_cards)+sumArray(data.RT);
+        secret_code=(data.payoffs.toString()).replace(/\,/g,'')+";"+ data.prices.toString()+";"+ data.nr_winning_cards.toString()+ ";"+ RT_string+ ";" + check_sum;
         $("#Trial").hide()
         $("#Finished").show()
         $("#SecretCode").html(secret_code);

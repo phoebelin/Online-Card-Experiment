@@ -48,3 +48,4 @@ var payoff_array = [];
 var j = 0;
 var num_trials = num_iterations * num_winning_cards.length * feature_payoff.length;
 var current_trial_num = 1;
+var start_time;
