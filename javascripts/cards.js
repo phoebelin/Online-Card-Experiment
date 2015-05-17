@@ -93,7 +93,7 @@ function display_cards(total_cards, feature, i) {
     }
 
     /*returns true if element is in given array*/
-    function isInArray(value, array) {
+function isInArray(value, array) {
 	return (array.indexOf(value) > -1);
     }
 
@@ -120,10 +120,11 @@ function nextTrial() {
 	    //console.log(win_probability);
         RT=new Date().getTime()-start_time;
         w.push(Math.round(RT/1000));
-        y.push(9*win_probability);
+        nr_winning_cards=total_cards-total_cards*win_probability;
+        y.push(nr_winning_cards);
 	    x.push(document.getElementById("amount-box").value);
 	    //z.push([feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]]]);
-        z.push((Math.max(feature_payoff[payoff_array[j]], other_payoff[payoff_array[j]])==1000)+0);
+        z.push((Math.max(feature_payoff[payoff_array[j-1]], other_payoff[payoff_array[j-1]])==1000)+0);
 	    //console.log("x" , x);
 	    //data['prices'] = x;
 		//data['probabilities'] = y;
@@ -137,13 +138,13 @@ function nextTrial() {
 	    current_trial_num++;
 	    document.getElementById("trial-num").innerHTML = "" + current_trial_num + " / " + num_trials + "";
 	}
-	if(current_trial_num > num_trials-1) {
+	if(current_trial_num > num_trials) {
 		
         data={
             RT: w,
             prices: x,
             nr_winning_cards: y,
-            payoffs: z            
+            payoffs: payoff_array            
         }
 		//console.log('data before turk', data);
 		//submitTurk();
