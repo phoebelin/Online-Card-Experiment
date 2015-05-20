@@ -1,7 +1,10 @@
 window.onload = function() {
     
+    
+    condition=getRandomInt(0,1);
+    
     for (var x = 0; x < num_trials; x++) {
-    	payoff_array.push(getRandomInt(0,1))
+    	payoff_array.push(condition)
     }
     shuffleArray(payoff_array);
 
